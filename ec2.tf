@@ -31,6 +31,14 @@ resource "aws_security_group" "my-security" {
     cidr_blocks = ["0.0.0.0/0"]
     description = "to allows all HTTP port to open"
   }
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "HTTP"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "to allows all HTTP port to open"
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -45,7 +53,7 @@ resource "aws_security_group" "my-security" {
 }
 
 
-#ec2 instance
+# ec2 instance
 resource "aws_instance" "my-instance" {
   key_name        = aws_key_pair.my-key.key_name
   security_groups = [aws_security_group.my-security.name]
@@ -59,3 +67,4 @@ resource "aws_instance" "my-instance" {
     name = "aws_first_ec2"
   }
 }
+
