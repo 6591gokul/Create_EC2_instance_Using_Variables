@@ -10,7 +10,7 @@ resource "aws_key_pair" "my-key" {
 resource "aws_default_vpc" "my-vpc" {
 }
 
-#security group
+# security group
 resource "aws_security_group" "my-security" {
   name        = "my-sg"
   description = "Allow TLS inbound traffic and all outbound traffic"
@@ -25,16 +25,9 @@ resource "aws_security_group" "my-security" {
   }
 
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "to allows all HTTP port to open"
-  }
-  ingress {
     from_port   = 443
-    to_port     = 443
-    protocol    = "HTTP"
+    to_port     = 43
+    protocol    = "http"
     cidr_blocks = ["0.0.0.0/0"]
     description = "to allows all HTTP port to open"
   }
